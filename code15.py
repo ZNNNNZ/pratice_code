@@ -6,7 +6,9 @@
 输出：a
      no
 '''
-a=(1,2,3.4,'hello','hello','world',[],(1),{3})
+a=(1,2,3.4,'hello','hello','world',[],(1),{3},'hello')
 print(a[::-1])
 b=a.index([])
 print(b)
+c=a.count('hello')
+print(c)
