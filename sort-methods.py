@@ -82,6 +82,7 @@ class insert_sort:
             for j in range(i+1)[::-1]: #依次与前面的数比较，当比前面的数小的时候，索引前进一位
                 if tmp<arrays[j]:
                     tmpindex=tmpindex-1
+                else:break
             arrays[tmpindex+1:i+2]=arrays[tmpindex:i+1] #比tmp小的部分数组整体往后挪一位
             arrays[tmpindex]=tmp #将tmp的值插入到对应的索引位置
         return arrays
@@ -175,19 +176,6 @@ class calculatenum_sort:
         return result
 
 class base_sort:
-    '''
-    def calculatesort1(self,arrays):
-        countarrays=[0]*10
-        for i in arrays:
-            countarrays[i]+=1
-        for j in range(1,len(countarrays)):
-            countarrays[j]+=countarrays[j-1]
-        result=[0]*len(arrays)
-        for k in range(len(arrays))[::-1]:
-            result[countarrays[arrays[k]]-1]=arrays[k]
-            countarrays[arrays[k]]-=1
-        return result
-        '''
     def basesort(self,arrays):
         if not arrays:
             return arrays
@@ -212,6 +200,11 @@ class base_sort:
                 result[countarray[nums1]-1]=m
                 countarray[nums1]-=1
             arrays=result[::]
+        if arrays[-1]<0 and arrays[0]>=0:
+            for l in range(len(arrays))[::-1]:
+                if arrays[l]>=0:
+                    break
+            arrays=arrays[l+1:]+arrays[:l+1]
         return arrays
 
 '''
@@ -236,5 +229,5 @@ arrays=[1,2,3,11,100,77,7,8,9]
 # print(C.calculatesort1(arrays))
 '''
 arrays=eval(input())
-B=base_sort()
-print(B.basesort(arrays))
+I=insert_sort()
+print(I.direct_insert_sort(arrays))
